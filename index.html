@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an AI-Powered RFP Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: #2a2a2a;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            margin-top: 1.2em;
+            margin-bottom: 0.5em;
+            color: #3a3a3a;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        blockquote {
+            border-left: 4px solid #ddd;
+            padding-left: 1em;
+            margin: 1.5em 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin-left: 2em;
+            margin-bottom: 1em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "Monaco", "Menlo", "Courier New", monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 2em 0;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            .container {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Building an AI-Powered RFP Analyzer</h1>
+
+        <blockquote>
+            <p>"Got an RFP. 200 questions. Need it by next week."</p>
+        </blockquote>
+
+        <p>That Slack message used to mean one thing: my entire week was gone. Everything else on hold. Late nights searching through old documents. Waiting on legal. Waiting on product. Hoping I didn't miss anything.</p>
+
+        <p>Now? "Give me 10 minutes."</p>
+
+        <p>This is the story of how I built an AI-powered RFP analyzer that reduced our response time from days to hours—and what I learned along the way that you can apply to your own AI projects.</p>
+
+        <h2>The Problem</h2>
+
+        <h3>The RFP Reality</h3>
+
+        <p>Manuel is our sales team. When an RFP comes in, he needs answers fast. But these aren't simple questionnaires:</p>
+
+        <ul>
+            <li><strong>100-200 questions</strong> covering everything from GDPR compliance to product features to data security</li>
+            <li><strong>1-7 days to complete</strong> depending on complexity and stakeholder availability</li>
+            <li><strong>80% repetition</strong> — we'd answered most questions before, somewhere</li>
+            <li><strong>One at a time</strong> — Manuel couldn't handle multiple RFPs simultaneously</li>
+        </ul>
+
+        <h3>The Old Process</h3>
+
+        <ol>
+            <li>Skim the RFP, assess scope, panic slightly</li>
+            <li>Search through old RFPs, Notion docs, email threads</li>
+            <li>Copy-paste, adapt language, hope it still applies</li>
+            <li>Wait on legal for security questions</li>
+            <li>Wait on product for feature confirmations</li>
+            <li>Final polish, send to Manuel</li>
+            <li>Repeat everything next week for a similar RFP</li>
+        </ol>
+
+        <h3>Why This Mattered</h3>
+
+        <p>Every hour spent hunting through old documents was an hour not spent on:</p>
+
+        <ul>
+            <li>AI enablement workshops</li>
+            <li>Building other tools</li>
+            <li>Strategic work</li>
+        </ul>
+
+        <p>We had to prioritize which opportunities to pursue based on my availability, not on business value.</p>
+
+        <p><strong>The Insight:</strong> We have 8-10 really solid past RFPs. We have product documentation. We have legal templates. This is just a knowledge retrieval problem.</p>
+
+        <h2>The Journey</h2>
+
+        <p>I'm not an AI researcher. I'm a solution engineer who saw a problem and wasn't afraid to try different tools until something worked.</p>
+
+        <h3>Lovable — Fast Prototyping</h3>
+
+        <p><strong>What I built:</strong> Basic interface to upload RFPs, display questions, enter answers manually.</p>
+
+        <p><strong>Why it worked:</strong> Got something functional in a few hours. Perfect for proving the concept.</p>
+
+        <p><strong>The limitation:</strong> Hit backend constraints quickly. Couldn't build the actual RAG system I needed.</p>
+
+        <p><em>Key lesson: Start with whatever tool gets you to "does this work?" fastest.</em></p>
+
+        <h3>Cursor — Building the Real System</h3>
+
+        <p><strong>What I built:</strong> The actual RAG implementation — Supabase database, vector embeddings, semantic search.</p>
+
+        <p><strong>Why it worked:</strong> Excellent for debugging. When things broke (and they did), Cursor helped me understand what went wrong and how to fix it.</p>
+
+        <p><strong>What I learned:</strong> Actually understanding what I was building, not just copy-pasting code. This matters when things break at 5 PM.</p>
+
+        <p><em>Key lesson: Use Cursor when you need to build something properly and want to understand it.</em></p>
+
+        <h3>Replit — The Failed Experiment</h3>
+
+        <p><strong>What happened:</strong> Tried it because people recommended it. The interface just didn't click with how I work.</p>
+
+        <p><strong>What I learned:</strong> No criticism of Replit itself—it's probably great for others. But developer experience matters.</p>
+
+        <p><em>Key lesson: If a tool frustrates you, switch. You won't finish the project if you hate the tool.</em></p>
+
+        <h3>Claude Code — Final Polish</h3>
+
+        <p><strong>What I built:</strong> Bug fixes, optimizations, UI improvements.</p>
+
+        <p><strong>Why it worked:</strong> Terminal-based, quick iterations, perfect for "this button doesn't quite work right."</p>
+
+        <p><em>Key lesson: Use Claude Code when your core system works and you just need refinements.</em></p>
+
+        <h2>How It Works: RAG in 5 Steps</h2>
+
+        <p><strong>RAG = Retrieval Augmented Generation.</strong> Fancy term for: find relevant past answers, use them as context for AI generation.</p>
+
+        <ol>
+            <li><strong>Document Storage:</strong> Upload our best past RFPs into a Supabase database with pgvector extension.</li>
+            <li><strong>Chunking:</strong> Break documents into ~500 word pieces with 50-token overlap. You can't feed entire RFPs to an AI at once.</li>
+            <li><strong>Vector Embeddings:</strong> Convert each chunk into numerical coordinates (1536 dimensions) using OpenAI's text-embedding-ada-002. Think of it like GPS coordinates for meaning.</li>
+            <li><strong>Semantic Search:</strong> When a new question comes in, embed it and find chunks with similar "coordinates" using cosine similarity (0.7+ threshold).</li>
+            <li><strong>Context-Aware Generation:</strong> Take the relevant chunks, inject them into a GPT-4 prompt, generate an answer adapted for the new question.</li>
+        </ol>
+
+        <h3>Technical Stack</h3>
+
+        <ul>
+            <li><strong>Storage:</strong> Supabase + pgvector extension</li>
+            <li><strong>Embeddings:</strong> OpenAI text-embedding-ada-002 (1536 dimensions)</li>
+            <li><strong>Search:</strong> Cosine similarity via Supabase's match_documents function</li>
+            <li><strong>Generation:</strong> GPT-4 with retrieved context</li>
+            <li><strong>Cost:</strong> €20-50/month for API calls and storage</li>
+        </ul>
+
+        <h3>Current Workflow</h3>
+
+        <ol>
+            <li>Upload new RFP (PDF)</li>
+            <li>System extracts questions automatically</li>
+            <li>For each question, search knowledge base (top 10 chunks, 0.7+ similarity)</li>
+            <li>GPT-4 generates first draft using retrieved context</li>
+            <li>Export document</li>
+            <li>Manuel reviews, polishes, validates accuracy</li>
+        </ol>
+
+        <h2>The Meta-Prompting Breakthrough</h2>
+
+        <p>Here's something I learned that changed everything: <strong>meta-prompting</strong> — teaching the AI how to help you.</p>
+
+        <h3>What is Meta-Prompting?</h3>
+
+        <p>Instead of asking "Build me an RFP analyzer," I'd tell the AI <em>how</em> to think about the problem. Give it context about my role, my constraints, what success looks like.</p>
+
+        <p><strong>Generic Prompt:</strong></p>
+        <blockquote>
+            <p>"How do I implement vector search?"</p>
+            <p><em>Result:</em> Generic tutorial, too complex, didn't fit my stack.</p>
+        </blockquote>
+
+        <p><strong>Meta-Prompt:</strong></p>
+        <blockquote>
+            <p>"I'm using Supabase pgvector. I understand SQL basics but not vector operations. Explain how to implement semantic search for RFP questions, optimized for ~10 documents, where response time matters more than perfect accuracy."</p>
+            <p><em>Result:</em> Specific code for my setup, explanation of tradeoffs, suggestions for my use case.</p>
+        </blockquote>
+
+        <h3>The Framework</h3>
+
+        <pre><code>WHO: I'm an SE with basic coding, not a backend dev
+WHAT: Building RFP analyzer with RAG
+WHY: Need to save time, working solo, limited budget
+HOW: Review my approach, explain tradeoffs
+SUCCESS: Works reliably, I can maintain it, costs &lt;€50/month</code></pre>
+
+        <h3>Why This Works</h3>
+
+        <ul>
+            <li><strong>Sets the frame:</strong> AI understands your context, not just the task</li>
+            <li><strong>Defines success:</strong> Explicit about what "good" means for your situation</li>
+            <li><strong>Constrains solutions:</strong> Get answers that fit YOUR constraints</li>
+            <li><strong>Better explanations:</strong> Calibrated to your knowledge level</li>
+        </ul>
+
+        <p><strong>Real Impact:</strong> Fewer iterations, faster debugging, relevant solutions. I learned as I built rather than just copy-pasting code I didn't understand.</p>
+
+        <h2>The Results</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Before</th>
+                    <th>After</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Time per RFP</td>
+                    <td>1-7 days</td>
+                    <td><strong>1-2 hours</strong></td>
+                </tr>
+                <tr>
+                    <td>First draft speed</td>
+                    <td>Manual search</td>
+                    <td><strong>10 minutes</strong></td>
+                </tr>
+                <tr>
+                    <td>Manuel's capacity</td>
+                    <td>One RFP at a time</td>
+                    <td><strong>Multiple simultaneous</strong></td>
+                </tr>
+                <tr>
+                    <td>Question coverage</td>
+                    <td>Manual hunting</td>
+                    <td><strong>80-90% automated</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Statistics</h3>
+
+        <ul>
+            <li><strong>90% Time Reduction</strong></li>
+            <li><strong>10 min</strong> First Draft</li>
+            <li><strong>85%</strong> Question Coverage</li>
+            <li><strong>€35</strong> Monthly Cost</li>
+        </ul>
+
+        <h3>The Hidden Value</h3>
+
+        <p>Beyond speed savings, the tool provides strategic insights:</p>
+
+        <ul>
+            <li><strong>Focus signals:</strong> Shows which questions need real thinking vs. quick answers</li>
+            <li><strong>Gap identification:</strong> Flags questions we've never answered — signals for documentation needs</li>
+            <li><strong>Weak spots:</strong> Identifies areas where our answers are inconsistent or outdated</li>
+            <li><strong>Product feedback:</strong> Reveals gaps between what prospects ask and what we deliver</li>
+        </ul>
+
+        <h2>Lessons Learned</h2>
+
+        <h3>1. Ship 80%, Not 100%</h3>
+
+        <p>I wanted one-click export, perfect formatting, beautiful UI, analytics dashboards. Could've spent months chasing that.</p>
+
+        <p>Manuel doesn't care about a pretty interface. He cares about getting answers fast. We export a document, he polishes it—that's fine.</p>
+
+        <p><strong>Takeaway:</strong> The 80% solution that exists today beats the 100% solution you'll build "eventually."</p>
+
+        <h3>2. Platform Selection Framework</h3>
+
+        <ul>
+            <li><strong>Testing an idea?</strong> → Use the easiest tool (Lovable, v0, Bolt)</li>
+            <li><strong>Building real backend logic?</strong> → Cursor (with AI assistance)</li>
+            <li><strong>Refining existing code?</strong> → Claude Code</li>
+            <li><strong>Comfortable with traditional dev?</strong> → Your preferred IDE + AI assistant</li>
+        </ul>
+
+        <p><strong>Principles:</strong></p>
+        <ul>
+            <li>Start simple — don't overcomplicate at prototype stage</li>
+            <li>Match tool to task — prototyping needs different tools than production</li>
+            <li>Trust your workflow — if a tool frustrates you, switch</li>
+            <li>Layer your stack — it's okay to use multiple tools across project lifecycle</li>
+        </ul>
+
+        <h3>3. Adoption is Harder Than Building</h3>
+
+        <p>Manuel uses it because it fits his existing workflow (Slacking me for RFP help). But broader adoption? That's a different challenge.</p>
+
+        <p><strong>The Adoption Pyramid:</strong></p>
+        <ul>
+            <li><strong>Awareness:</strong> People need to know it exists (start here!)</li>
+            <li><strong>Trial:</strong> Make first use stupidly easy (no logins, no setup)</li>
+            <li><strong>Regular use:</strong> Integrate into existing workflows (don't create new habits)</li>
+            <li><strong>Advocates:</strong> Get power users who tell others organically</li>
+        </ul>
+
+        <h3>4. What I'd Do Differently</h3>
+
+        <ul>
+            <li><strong>Clean data first:</strong> Our past RFPs weren't well organized. I spent time cleaning data I could've sorted upfront. Your AI is only as good as your data.</li>
+            <li><strong>Test with real work from day one:</strong> Don't use fake examples. Found edge cases immediately—legal questions need different handling than product questions.</li>
+            <li><strong>Build feedback loops early:</strong> Should've added a "was this helpful?" button from the start. Now retrofitting it.</li>
+            <li><strong>Document as you go:</strong> I'm rebuilding parts now and can't remember why I made certain choices. Even a simple README helps.</li>
+            <li><strong>Learn meta-prompting early:</strong> Would've saved weeks of getting mediocre answers and iterating blindly.</li>
+        </ul>
+
+        <h3>5. You Don't Need to Be an Expert</h3>
+
+        <p>I don't understand transformer architecture. Can't explain how GPT-4 works under the hood.</p>
+
+        <p>But I understand: retrieve relevant information → give it to AI as context → generate response.</p>
+
+        <p>That's enough to build useful tools.</p>
+
+        <p><strong>What you actually need:</strong></p>
+        <ul>
+            <li>Curiosity and willingness to try things</li>
+            <li>Ability to break big problems into smaller ones</li>
+            <li>Patience when things don't work (they won't, initially)</li>
+            <li>Ability to explain your situation clearly (meta-prompting!)</li>
+            <li>A real problem worth solving</li>
+        </ul>
+
+        <h2>Your Framework: Building Your Own Tool</h2>
+
+        <ol>
+            <li><strong>Identify the annoying thing:</strong> What manual task is eating your time? What do you do repeatedly that could be automated?</li>
+            <li><strong>Check if you have data:</strong> Do you have past examples, documents, knowledge somewhere? AI needs something to work with.</li>
+            <li><strong>Build quick &amp; scrappy:</strong> Prove it works in hours, not weeks. Use the easiest tool available.</li>
+            <li><strong>Rebuild properly:</strong> Once you've proven the concept, build the real version with appropriate tools.</li>
+            <li><strong>Use it yourself first:</strong> Find the problems before anyone else does. Your frustrations = improvement opportunities.</li>
+            <li><strong>Improve from real usage:</strong> Add features based on what people actually ask for, not what you think they want.</li>
+        </ol>
+
+        <h3>Common Use Cases for This Approach</h3>
+
+        <ul>
+            <li><strong>QBR Preparation:</strong> Search past customer interactions, generate summaries</li>
+            <li><strong>Support Ticket Analysis:</strong> Find similar past issues, suggest solutions</li>
+            <li><strong>Sales Call Summaries:</strong> Extract key points, action items, follow-ups</li>
+            <li><strong>Product Feedback Synthesis:</strong> Aggregate feedback across channels, identify themes</li>
+            <li><strong>Documentation Q&amp;A:</strong> Answer questions from internal knowledge bases</li>
+        </ul>
+
+        <p><strong>The Pattern:</strong> If you have knowledge scattered across documents, Slack, emails, or people's heads—AI can help consolidate and retrieve it efficiently.</p>
+
+        <h2>Your Turn</h2>
+
+        <p>Pick a problem you see every day. Build something small. See what happens.</p>
+
+        <p>And when you do—message me. I'd genuinely like to see what you build.</p>
+
+        <hr>
+
+        <p><em>Built with curiosity and a bit of frustration · 2025</em></p>
+    </div>
+</body>
+</html>
