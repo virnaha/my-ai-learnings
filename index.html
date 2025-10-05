@@ -25,12 +25,43 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 40px 20px;
+        }
+
+        section {
             background: white;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 30px;
             border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .intro-section h1 {
+            color: white;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .intro-section blockquote {
+            background: rgba(255, 255, 255, 0.15);
+            border-left-color: white;
+            color: white;
         }
 
         h1 {
@@ -44,7 +75,7 @@
 
         h2 {
             font-size: 2em;
-            margin-top: 2em;
+            margin-top: 0;
             margin-bottom: 0.75em;
             color: #2d3748;
             font-weight: 700;
@@ -196,7 +227,11 @@
             }
 
             .container {
-                padding: 40px 25px;
+                padding: 20px 10px;
+            }
+
+            section {
+                padding: 30px 20px;
             }
 
             h1 {
@@ -223,7 +258,12 @@
 
         @media (max-width: 480px) {
             .container {
-                padding: 30px 20px;
+                padding: 15px 10px;
+            }
+
+            section {
+                padding: 25px 15px;
+                margin-bottom: 20px;
             }
 
             h1 {
@@ -246,18 +286,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Building an AI-Powered RFP Analyzer</h1>
+        <section class="intro-section">
+            <h1>Building an AI-Powered RFP Analyzer</h1>
 
-        <blockquote>
-            <p>"Got an RFP. 200 questions. Need it by next week."</p>
-        </blockquote>
+            <blockquote>
+                <p>"Got an RFP. 200 questions. Need it by next week."</p>
+            </blockquote>
 
-        <p>That Slack message used to mean one thing: my entire week was gone. Everything else on hold. Late nights searching through old documents. Waiting on legal. Waiting on product. Hoping I didn't miss anything.</p>
+            <p>That Slack message used to mean one thing: my entire week was gone. Everything else on hold. Late nights searching through old documents. Waiting on legal. Waiting on product. Hoping I didn't miss anything.</p>
 
-        <p>Now? "Give me 10 minutes."</p>
+            <p>Now? "Give me 10 minutes."</p>
 
-        <p>This is the story of how I built an AI-powered RFP analyzer that reduced our response time from days to hours—and what I learned along the way that you can apply to your own AI projects.</p>
+            <p>This is the story of how I built an AI-powered RFP analyzer that reduced our response time from days to hours—and what I learned along the way that you can apply to your own AI projects.</p>
+        </section>
 
+        <section>
         <h2>The Problem</h2>
 
         <h3>The RFP Reality</h3>
@@ -296,7 +339,9 @@
         <p>We had to prioritize which opportunities to pursue based on my availability, not on business value.</p>
 
         <p><strong>The Insight:</strong> We have 8-10 really solid past RFPs. We have product documentation. We have legal templates. This is just a knowledge retrieval problem.</p>
+        </section>
 
+        <section>
         <h2>The Journey</h2>
 
         <p>I'm not an AI researcher. I'm a solution engineer who saw a problem and wasn't afraid to try different tools until something worked.</p>
@@ -336,7 +381,9 @@
         <p><strong>Why it worked:</strong> Terminal-based, quick iterations, perfect for "this button doesn't quite work right."</p>
 
         <p><em>Key lesson: Use Claude Code when your core system works and you just need refinements.</em></p>
+        </section>
 
+        <section>
         <h2>How It Works: RAG in 5 Steps</h2>
 
         <p><strong>RAG = Retrieval Augmented Generation.</strong> Fancy term for: find relevant past answers, use them as context for AI generation.</p>
@@ -369,7 +416,9 @@
             <li>Export document</li>
             <li>Manuel reviews, polishes, validates accuracy</li>
         </ol>
+        </section>
 
+        <section>
         <h2>The Meta-Prompting Breakthrough</h2>
 
         <p>Here's something I learned that changed everything: <strong>meta-prompting</strong> — teaching the AI how to help you.</p>
@@ -408,7 +457,9 @@ SUCCESS: Works reliably, I can maintain it, costs &lt;€50/month</code></pre>
         </ul>
 
         <p><strong>Real Impact:</strong> Fewer iterations, faster debugging, relevant solutions. I learned as I built rather than just copy-pasting code I didn't understand.</p>
+        </section>
 
+        <section>
         <h2>The Results</h2>
 
         <table>
@@ -462,7 +513,9 @@ SUCCESS: Works reliably, I can maintain it, costs &lt;€50/month</code></pre>
             <li><strong>Weak spots:</strong> Identifies areas where our answers are inconsistent or outdated</li>
             <li><strong>Product feedback:</strong> Reveals gaps between what prospects ask and what we deliver</li>
         </ul>
+        </section>
 
+        <section>
         <h2>Lessons Learned</h2>
 
         <h3>1. Ship 80%, Not 100%</h3>
@@ -528,7 +581,9 @@ SUCCESS: Works reliably, I can maintain it, costs &lt;€50/month</code></pre>
             <li>Ability to explain your situation clearly (meta-prompting!)</li>
             <li>A real problem worth solving</li>
         </ul>
+        </section>
 
+        <section>
         <h2>Your Framework: Building Your Own Tool</h2>
 
         <ol>
@@ -551,7 +606,9 @@ SUCCESS: Works reliably, I can maintain it, costs &lt;€50/month</code></pre>
         </ul>
 
         <p><strong>The Pattern:</strong> If you have knowledge scattered across documents, Slack, emails, or people's heads—AI can help consolidate and retrieve it efficiently.</p>
+        </section>
 
+        <section>
         <h2>Your Turn</h2>
 
         <p>Pick a problem you see every day. Build something small. See what happens.</p>
@@ -561,6 +618,7 @@ SUCCESS: Works reliably, I can maintain it, costs &lt;€50/month</code></pre>
         <hr>
 
         <p><em>Built with curiosity and a bit of frustration · 2025</em></p>
+        </section>
     </div>
 </body>
 </html>
